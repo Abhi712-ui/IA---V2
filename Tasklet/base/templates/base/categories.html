@@ -1,0 +1,32 @@
+
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr>
+<h1> Hello World</h1>
+<a href="{% url 'create-category' %}">Add Category</a>
+
+<form method="GET">
+    <input type="text" name="search" value="{{search_input}}">
+    <input type="submit" value="Search">
+</form>
+
+<table>
+    <tr>
+        <th>Item</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+        <td>{{category.Header}}</td>
+        <td><button><a href="{% url 'category' category.id %}">View</a></button></td>
+        <td><button><a href="{% url 'update-category' category.id %}">Edit</a></button></td>
+        <td><button><a href="{% url 'delete-category' category.id %}">Delete</a></button></td>
+    </tr>
+    {% empty %}
+    <h3>No Items</h3>
+    {% endfor %}
+</table>

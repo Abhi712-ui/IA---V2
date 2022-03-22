@@ -1,0 +1,6 @@
+<button><a href="{% url 'categories' %}">Go Back</a></button>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete this Category? {{category}}</p>
+    <input type="submit" value="Delete">
+</form>
