@@ -7,8 +7,9 @@
 {% endif %}
 
 <hr>
-<h1> Hello World</h1>
+<h1>{{request.user}}'s categories</h1>
 <a href="{% url 'create-category' %}">Add Category</a>
+<a href="{% url 'tasks' %}">Tasks</a>
 
 <form method="GET">
     <input type="text" name="search" value="{{search_input}}">
