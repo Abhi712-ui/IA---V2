@@ -85,24 +85,17 @@ class DetailTask(LoginRequiredMixin,DetailView):
      context_object_name = "task"
      template_name = "base/task.html"
 
-     def get_context_data(self, **kwargs):
-          context = super().get_context_data(**kwargs)
-          context['tasks'] = context['tasks'].filter(user=self.request.user)
-          return context
+     
 
 class DetailCategory(LoginRequiredMixin,DetailView):
      model = Category
      context_object_name = "category"
      template_name = "base/category.html"
 
-     def get_context_data(self, **kwargs):
-          context = super().get_context_data(**kwargs)
-          context['categories'] = context['categories'].filter(Category_User = self.request.user)
-          return context
 
 class CreateTask(LoginRequiredMixin,CreateView):
      model = Task
-     fields = ['title', 'description', 'complete']
+     fields = ['title', 'description', 'complete', 'Task_Category']
      success_url = reverse_lazy('tasks')
 
      def form_valid(self, form):

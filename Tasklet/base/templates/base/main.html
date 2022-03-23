@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,13 +7,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="base/static/Assets/Vector.svg" rel="icon">
+    <link href="{% static 'base/Assets/Vector.svg' %}" rel="icon">
     <style>
         body {
-            background-image: url('static/Assets/BetterBackground.svg');
+            background-image: url("{% static 'base/Assets/NoBlurs.svg' %}");
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-size: 100%
         }
     </style>
     <title>Tasklet</title>
@@ -23,6 +25,23 @@
 
 
 <body>
+    <nav class="navbar navbar-dark bg-dark" style="background-color: rgba(255, 0, 0, 0.4); font-family: 'Inter', sans-serif; font-weight: bold; color: whitesmoke;">
+        <div style="display: inline-block;" class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'base/Assets/Vector.svg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">Tasklet {% if request.user.is_authenticated %}
+
+                <a style="color: whitesmoke;" href="{% url 'logout' %}">Logout</a>
+                <p style="color: whitesmoke; text-align: justify;">
+                    Current User: {{request.user}}
+                </p>
+                {% else %}
+                <a style="color: whitesmoke;" href="{% url 'login' %}">Login</a> {% endif %}
+            </a>
+            <div style="display:block;">
+
+            </div>
+        </div>
+    </nav>
     <div>
         {% block content %} {% endblock content %}
     </div>
