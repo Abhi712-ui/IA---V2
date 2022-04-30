@@ -1,10 +1,10 @@
 {% extends 'base/main.html' %}
 
 {% block content%}
-<div class="card" style="background-color: #191b44;">
-<div class="card-header">
-<h1 class="card-title" style="text-align: center; color: white; font-family: 'Inter', sans-serif;">
-    Tasks for {{request.user}}
+<div style="background-color: #191b44; border-radius: 10px;">
+<div>
+<h1 style="text-align: center; color: white; font-family: 'Inter', sans-serif; padding: 5px;">
+    Hello {{request.user}}, you have <i>{{count}}</i> task(s) remaining
 </h1>
 </div>
 </div>
@@ -22,10 +22,18 @@
     <div class="row">
     {% for task in tasks %}
         <div class="col">
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header"><h3>{{task.title}}</h3></div>
+            <div class="card text-white bg-dark mb-3" style="max-width: 350px; min-width: 350px; margin: 10px;">
+                {% if task.complete %}
+                <div class="card-header"><h3><s><a href="{% url 'task' task.id %}">{{task.title}}</a></s></h3></div>
+                {% else %}
+                <div class="card-header"><h3><a href="{% url 'task' task.id %}">{{task.title}}</a></h3></div>
+                {% endif %}
                 <div class="card-body">
+                    {% if task.complete %}
+                    <h5 class="card-title"><span class="badge rounded-pill bg-success">Completed</span></h5>
+                    {% else %}
                   <h5 class="card-title"><span class="badge rounded-pill bg-warning text-dark">{{task.Task_Category.Header}}</span></h5>
+                  {% endif %}
                   <p class="card-text">{{task.description}}</p>
                 </div>
                 <div class="card-footer">
@@ -35,8 +43,13 @@
                 </div>
             </div>
         </div>
+    
+    
+   
     {% empty %}
-    <h3>No Items</h3>
+    <div class="alert alert-dark" role="alert" style="max-width: 18rem; background-color: #2a2734; color: white;">
+        No Tasks Created
+      </div>
     {% endfor %}
         </div>
 </div>

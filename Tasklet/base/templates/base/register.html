@@ -1,3 +1,5 @@
+{% extends 'base/main.html' %}
+{% block content %}
 <h1>Register</h1>
 
 <form method="POST">
@@ -6,4 +8,5 @@
       <input type="submit" value="Register">
 </form>
 
-<button>Already have an account?<a href="">Login</a></button>
+<button>Already have an account?<a href="{% url 'login' %}">Login</a></button>
+{% endblock content %}

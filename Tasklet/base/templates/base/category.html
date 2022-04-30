@@ -1,1 +1,5 @@
+{% extends 'base/main.html' %}
+{% block content %}
+<button><a href="{% url 'tasks' %}">Go Back</a></button>
 <h1>Category: {{category}}</h1>
+{% endblock content %}

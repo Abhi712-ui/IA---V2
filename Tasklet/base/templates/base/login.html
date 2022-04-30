@@ -1,9 +1,15 @@
-<h1>Login</h1>
+{% extends 'base/main.html' %}
+{% block content %}
+<h1>Login to Tasklet</h1>
 
 <form method="POST">
       {% csrf_token %}
+      <span id="basic-addon1">Username and Password</span>
+      <div class="input-group">
       {{form.as_p}}
       <input type="submit" value="Login">
+      </div>
 </form>
 
-<button><a href="{% url 'register' %}">Register</a></button>
+<button class="btn btn-dark"><a href="{% url 'register' %}">Register</a></button>
+{% endblock content %}

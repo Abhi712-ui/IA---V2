@@ -1,1 +1,6 @@
-<h1>Task: {{task}}</h1>
+{% extends 'base/main.html' %}
+{% block content %}
+<button><a href="{% url 'tasks' %}">Go Back</a></button>
+<h1 style="text-align: center;">Task: {{task}}</h1>
+<p style="text-align: center; font-size: 30px;">{{task.description}}</p>
+{% endblock content %}
